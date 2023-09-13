@@ -34,14 +34,14 @@ if(isset($_POST['cari'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Absen <?= $rayon?></title>
     <link rel="stylesheet" href="style/data.css">
 </head>
 <body>
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa <?= $rayon?></h1></div>
-  <a href="tambah.php">+ Tambah Data</a>
+  <a href="pesan.php">Pesan</a>
     <form class="d-flex" role="search" action="" method="post">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
@@ -50,7 +50,7 @@ if(isset($_POST['cari'])) {
   </div>
 </nav>
     <br><br>
-
+   
     <table border ="1">
         
         <tr>
@@ -61,14 +61,16 @@ if(isset($_POST['cari'])) {
             <th>ESKUL</th>
             <th>ESKUL PRODUKTIF</th>
             <th>SENI BUDAYA</th>
-            <th>KEHADIRAN</th>
+            <th>KEHADIRAN ESKUL UMUM</th>
+            <th>KEHADIRAN ESKUL PRODUKTIF</th>
+            <th>KEHADIRAN SENI BUDAYA</th>
             
         </tr>
         
-        <?php $i =1;?>
-            <?php foreach ($db_abseneskul as $eskull):?>
+     
 
-    
+    <?php $i =1;?>
+            <?php foreach ($db_abseneskul as $eskull):?>
         <tr>
             <td><?= $i ?></td>
             <td><?= $eskull["nama"]?></td>
@@ -77,7 +79,9 @@ if(isset($_POST['cari'])) {
             <td><?= $eskull["eskul"]?></td>
             <td><?= $eskull["eskulproduktif"]?></td>
             <td><?= $eskull["senbud"]?></td>
-            <td>><?= $eskull["kehadiran"]?></td>
+            <td><?= $eskull["kehadiranEskulUmum"]?></td>
+            <td><?= $eskull["kehadiranEskulProduktif"]?></td>
+            <td><?= $eskull["kehadiranaSeniBudaya"]?></td>
         
             
         </tr>

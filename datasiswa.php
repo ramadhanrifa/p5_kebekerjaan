@@ -20,7 +20,7 @@ if(isset($_POST['cari'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Data Siswa</title>
     <link rel="stylesheet" href="style/data.css">
 </head>
 <body>
@@ -28,6 +28,7 @@ if(isset($_POST['cari'])) {
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa</h1></div>
   <a href="tambah.php">+ Tambah Data</a>
+  <a href="pertanyaan.php">? Beri Pertanyaan</a>
     <form class="d-flex" role="search" action=""  method="post">
       <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
@@ -46,7 +47,9 @@ if(isset($_POST['cari'])) {
             <th>ESKUL</th>
             <th>ESKUL PRODUKTIF</th>
             <th>SENI BUDAYA</th>
-            <th>KEHADIRAN</th>
+            <th>KEHADIRAN eskul umum</th>
+            <th>KEHADIRAN eskul produktif</th>
+            <th>KEHADIRAN senbud</th>
             
         </tr>
         
@@ -60,8 +63,9 @@ if(isset($_POST['cari'])) {
             <td><?= $eskull["eskul"]?></td>
             <td><?= $eskull["eskulproduktif"]?></td>
             <td><?= $eskull["senbud"]?></td>
-            <td><?= $eskull["kehadiran"]?></td>
-          
+            <td><?= $eskull["kehadiranEskulUmum"]?></td>
+            <td><?= $eskull["kehadiranEskulProduktif"]?></td>
+            <td><?= $eskull["kehadiranaSeniBudaya"]?></td>
             
         </tr>
        <?php endforeach;?>

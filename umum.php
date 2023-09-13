@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     if ($conn) {
         foreach ($ids as $id) {
             $kehadiran = $kehadiran_values[$id];
-            $sql = "UPDATE eskul SET kehadiran = '$kehadiran' WHERE id = $id";
+            $sql = "UPDATE datasiswa SET kehadiranU = '$kehadiran' WHERE id = $id";
 
             if (mysqli_query($conn, $sql)) {
                 echo "<script>alert('Kehadiran sudah diupdate')</script>";
@@ -52,14 +52,13 @@ if(isset($_POST['cari'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>Absen <?= $tipe?></title>
     <link rel="stylesheet" href="style/data.css">
 </head>
 <body>
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa <?= $umum?></h1></div>
-  <a href="tambah.php">+ Tambah Data</a>
     <form class="d-flex" role="search" action="" method="post">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
