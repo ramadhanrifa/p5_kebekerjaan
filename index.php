@@ -1,8 +1,13 @@
 <?php 
  
-include 'config.php';
+require_once 'config.php';
  
 error_reporting(0);
+$session_expiration = 1800; // 30 menit
+
+// Mengatur waktu kedaluwarsa sesi
+session_set_cookie_params($session_expiration);
+session_start();
  
 session_start();
  
@@ -16,10 +21,26 @@ if (isset($_POST['submit'])) {
  
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $sql);
-        if ($result->num_rows > 0) {
+
+    // $buelvia= "SELECT * FROM users WHERE email='elvia@smkwikrama' AND password = 'buelvi'";
+    // $buEl = mysqli_query($conn, $buelvia);
+    // if($buEl->num_rows > 0){
+    //     $row = mysqli_fetch_assoc($result);
+    //     $_SESSION['username'] = $row['username'];
+    //     $_SESSION['rayon'] = $rayon;
+    //     header("Location: wellcome.php");
+    // }
+    if($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $row['username'];
-            header("Location: berhasil_login.php");
+            if (isset($row['tipe'])) {
+                $_SESSION['tipe'] = $row['tipe'];
+            }
+            if (isset($row['status'])) {
+                $_SESSION['status'] = $row['status'];
+            }
+            
+            header("Location: wellcome.php");
     } else {
         echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
     }
@@ -35,17 +56,9 @@ if (isset($_POST['submit'])) {
  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
  
     <title>Login</title>
-    <style>
-        body{
-            width: 518px;
-            height: 261px;
-            top: 196px;
-            left: -266px;
-        }
-    </style>
 </head>
 <body>
     <div class="alert alert-warning" role="alert">
