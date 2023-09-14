@@ -7,7 +7,6 @@ $session_expiration = 1800; // 30 menit
 
 // Mengatur waktu kedaluwarsa sesi
 session_set_cookie_params($session_expiration);
-session_start();
  
 session_start();
  
