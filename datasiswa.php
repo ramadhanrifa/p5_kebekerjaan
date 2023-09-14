@@ -27,8 +27,8 @@ if(isset($_POST['cari'])) {
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa</h1></div>
-  <a href="tambah.php">+ Tambah Data</a>
-  <a href="pertanyaan.php">? Beri Pertanyaan</a>
+  <a href="logout.php">keluar</a>
+  <a href="pertanyaan.php">Beri Pertanyaan?</a>
     <form class="d-flex" role="search" action=""  method="post">
       <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
@@ -70,6 +70,5 @@ if(isset($_POST['cari'])) {
         </tr>
        <?php endforeach;?>
     </table>
-    <button><a href="logout.php">keluar</a></button>
 </body>
 </html>

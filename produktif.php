@@ -63,6 +63,7 @@ if(isset($_POST['cari'])) {
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa <?= $tipe?></h1></div>
+  <a href="logout.php">keluar</a>
   <a href="pesan.php">Buka Pesan</a>
     <form class="d-flex" role="search" action="" method="post">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
@@ -117,9 +118,9 @@ if(isset($_POST['cari'])) {
        ?>
        
     </table>
-    <input type="submit" name="submit">
+    <!-- <input type="submit" name="submit"> -->
     </form>
-    <button><a href="logout.php">keluar</a></button>
+   
 </body>
 </html>
 
