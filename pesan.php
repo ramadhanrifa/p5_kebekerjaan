@@ -39,8 +39,101 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pertanyaan</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        html{
+    height: 100%;
+ }
+
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#096096B4 ,#93BFCF);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+
+.contain {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.table {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+.form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Define styles for links */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    </style>
 </head>
 <body>
+    <center><h1>form Pesan</h1><br></center>
     <div class="contain">
 
         <div class="table" border = 1> 
@@ -73,7 +166,6 @@ if(isset($_POST['submit'])){
 
 
         <form action="" method="post">
-        <h1>form Pesan</h1><br>
         <div class="form">
             <label for="">dari - </label>
             <input type="text" value="<?= $from ?>">  <br>
@@ -86,16 +178,10 @@ if(isset($_POST['submit'])){
         </div>
 
     </form>
-    <?php
-if (isset($_SERVER['HTTP_REFERER'])) {
-    $previousPage = $_SERVER['HTTP_REFERER'];
-    echo "<a href='$previousPage'>Kembali ke halaman sebelumnya</a>";
-} else {
-    // Handle the case where the HTTP_REFERER is not set (e.g., user typed the URL directly)
-    // You can redirect to a default page or display an error message.
-    echo "No previous page found.";
-}
-?>
+ 
+    <a href="rayon.php">Kembali ke halaman sebelumnya</a>
+
+
 
     </div>
     
