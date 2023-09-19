@@ -30,7 +30,9 @@ function search($keyword){
     eskul LIKE '%$keyword%' OR
     senbud LIKE '%$keyword%' OR
     eskulproduktif LIKE '%$keyword%' OR
-    kehadiran LIKE '%$keyword%'
+    kehadiranEskulUmum LIKE '%$keyword%'OR
+    kehadiranEskulProduktif LIKE '%$keyword%'OR
+    kehadiranaSeniBudaya LIKE '%$keyword%'
     
     ";
     return query ($query);

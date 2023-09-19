@@ -20,6 +20,8 @@ if(isset($_POST['submit'])){
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Pesan anda sudah dikirim')</script>";
+            header('location: wellcome.php');
+
         } else {
             echo "Error: " . mysqli_error($conn);
         }

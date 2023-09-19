@@ -8,8 +8,35 @@ $from = $_SESSION['username'];
 
 $pengirim = mysqli_query($conn, "SELECT * FROM pesan WHERE nama = '$from' " );
 
+$sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] ."'";
+
+$result = mysqli_query($conn, $sql);
+
+
 if(!isset($_SESSION['username'])){
     header('location: index.php');
+}
+
+
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $status = $row['status'];
+
+    if ($status === 'pembimbing') {
+        $link = 'datasiswa';
+    } elseif ($status === 'rayon') {
+        $link = 'rayon';
+    } elseif($status === 'produktif'){
+        $link = 'produktif';
+    }elseif($status== 'senbud'){
+        $link = 'senbud';
+    }
+    else{
+        $link = 'umum';
+    }
+} else {
+    // Handle error jika query gagal
+    $link = 'logout'; // Atau sesuaikan dengan tindakan yang sesuai
 }
 
 
@@ -23,6 +50,7 @@ if(isset($_POST['submit'])){
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Pesan anda sudah dikirim')</script>";
+            header('location: wellcome.php');
         } else {
             echo "Error: " . mysqli_error($conn);
         }
@@ -168,7 +196,7 @@ a:hover {
         <form action="" method="post">
         <div class="form">
             <label for="">dari - </label>
-            <input type="text" value="<?= $from ?>">  <br>
+            <input type="text" value="<?= $from ?>" disabled>  <br>
             <label for="">tuliskan Pesan anda</label><br>
             <textarea name="pesan" id="" cols="30" rows="10"></textarea><br>
 
@@ -179,7 +207,7 @@ a:hover {
 
     </form>
  
-    <a href="rayon.php">Kembali ke halaman sebelumnya</a>
+    <a href="<?= $link?>.php">Kembali ke halaman sebelumnya</a>
 
 
 
