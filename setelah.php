@@ -109,7 +109,8 @@ $db_abseneskul = mysqli_query($conn, "SELECT * FROM eskul");
           
             
         </tr>
-       
+
+        
     </table>
 </body>
 </html>
