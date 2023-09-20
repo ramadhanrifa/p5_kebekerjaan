@@ -4,6 +4,32 @@ session_start();
 
 $user = mysqli_query($conn, "SELECT * FROM users ");
 
+// $sesi = $_SESSION['username'];
+// $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] ."'";
+// $result = mysqli_query($conn, $sql);
+
+// if ($result) {
+//     $row = mysqli_fetch_assoc($result);
+//     $status = $row['status'];
+
+//     if ($status === 'pembimbing') {
+//         $link = 'datasiswa';
+//     } elseif ($status === 'rayon') {
+//         $link = 'rayon';
+//     } elseif($status === 'produktif'){
+//         $link = 'produktif';
+//     }elseif($status== 'senbud'){
+//         $link = 'senbud';
+//     }
+//     else{
+//         $link = 'umum';
+//     }
+// } else {
+
+//     $link = 'logout'; 
+// }
+
+
 if(!isset($_SESSION['username'])){
     header('location: index.php');
 }
@@ -28,6 +54,26 @@ if(isset($_POST['submit'])){
     
 
    
+}
+if ($user) {
+    $row = mysqli_fetch_assoc($user);
+    $status = $row['status'];
+
+    if ($status === 'pembimbing') {
+        $link = 'datasiswa';
+    } elseif ($status === 'rayon') {
+        $link = 'rayon';
+    } elseif($status === 'produktif'){
+        $link = 'produktif';
+    }elseif($status== 'senbud'){
+        $link = 'senbud';
+    }
+    else{
+        $link = 'umum';
+    }
+} else {
+
+    $link = 'logout'; 
 }
 
 ?>
@@ -135,7 +181,7 @@ if(isset($_POST['submit'])){
         </div>
 
     </form>
-   <a href="datasiswa.php">Kembali</a> 
+   <a href="wellcome.php">Kembali</a> 
     </div>
    
 </body>

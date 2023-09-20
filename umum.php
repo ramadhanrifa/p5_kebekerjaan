@@ -26,14 +26,41 @@ if (isset($_POST['submit'])) {
 
     if ($conn) {
         foreach ($ids as $id) {
-            $kehadiran = $kehadiran_values[$id];
-            $sql = "UPDATE datasiswa SET kehadiranU = '$kehadiran' WHERE id = $id";
-
-            if (mysqli_query($conn, $sql)) {
-                echo "<script>alert('Kehadiran sudah diupdate')</script>";
+            $kehadiran = mysqli_real_escape_string($conn, $kehadiran_values[$id]);
+            $sqlUpdate = "UPDATE datasiswa SET kehadiranEskulUmum = ? WHERE id = ?";
+            
+            // Persiapkan pernyataan SQL UPDATE
+            $stmtUpdate = mysqli_prepare($conn, $sqlUpdate);
+            mysqli_stmt_bind_param($stmtUpdate, 'si', $kehadiran, $id);
+            
+            if (mysqli_stmt_execute($stmtUpdate)) {
+                $result = mysqli_query($conn, "SELECT * FROM datasiswa WHERE id = $id");
+                $siswa = mysqli_fetch_array($result);
+                $nama = $siswa['nama'];
+                $nis = $siswa['nis'];
+                $rayon = $siswa['rayon'];
+                $eskulProduktif = $siswa['eskul'];
+                $tanggal = date("d-m-y");
+    
+                // Buat pernyataan SQL INSERT INTO ... SELECT
+                $sqlInsert = "INSERT INTO rekapabsenumum (nama, nis, rayon, EskulUmum, absenEskulUmum, tanggalEU)
+                              SELECT ?, ?, ?, ?, ?, ? FROM datasiswa WHERE id = ?";
+                $stmtInsert = mysqli_prepare($conn, $sqlInsert);
+                mysqli_stmt_bind_param($stmtInsert, 'sissssi', $nama, $nis, $rayon, $eskulProduktif, $kehadiran, $tanggal, $id);
+                
+                if (mysqli_stmt_execute($stmtInsert)) {
+                    echo "<script>alert('Kehadiran sudah diupdate dan ditambahkan ke dalam database')</script>";
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
             } else {
                 echo "Error: " . mysqli_error($conn);
             }
+            // if(!$kehadiran){
+            //     echo "<script>alert('Silahkan pilih kehadiran')</script>";
+            //     header("location: produktif.php");
+            //     die;
+            // }
         }
     } else {
         echo "Tidak dapat terhubung ke database.";
@@ -52,7 +79,7 @@ if(isset($_POST['cari'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <title>Absen <?= $tipe?></title>
+    <title>Absen Eskul Umum</title>
     <link rel="stylesheet" href="style/data.css">
 </head>
 <body>
@@ -77,8 +104,6 @@ if(isset($_POST['cari'])) {
             <th>NIS</th>
             <th>RAYON</th>
             <th>ESKUL</th>
-            <th>ESKUL PRODUKTIF</th>
-            <th>SENI BUDAYA</th>
             <th>KEHADIRAN</th>
             
         </tr>
@@ -92,8 +117,6 @@ if(isset($_POST['cari'])) {
             <td><?= $eskull["nis"]?></td>
             <td><?= $eskull["rayon"]?></td>
             <td><?= $eskull["eskul"]?></td>
-            <td><?= $eskull["eskulproduktif"]?></td>
-            <td><?= $eskull["senbud"]?></td>
             <td>
             <input type="hidden" name="id[]" value="<?= $eskull['id'] ?>">
             <input type="radio" id="hadir<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="hadir">
@@ -113,7 +136,7 @@ if(isset($_POST['cari'])) {
        ?>
        
     </table>
-    <!-- <input type="submit" name="submit"> -->
+    <input type="submit" name="submit">
     </form>
     <!-- <button><a href="logout.php">keluar</a></button> -->
 </body>

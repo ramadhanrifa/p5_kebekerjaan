@@ -1,0 +1,9 @@
+
+kalau kodingannya error berarti cek apakah table nya sudah didownload atau belum kalau tidak coba ubah nama database di 
+config.php
+
+ini pesan untuk mau ngerjain frontend (Adly)
+    1. search yang ada di PRODUKTIF, umum, sama senbud dipindahkan ke atas tabel 
+    2. tanggal didiamkan saja (boleh ubah tampilannya)
+    3.tombol input submit  dalam file PRODUKTIF, umum, sama senbud tidak boleh dihilangkan
+    4.rapihin semua file yang menurut anda berantakan

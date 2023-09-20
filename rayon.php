@@ -8,14 +8,30 @@ if (isset($_SESSION['tipe']) ) {
 }
 
 $db_abseneskul = mysqli_query($conn, "SELECT * FROM datasiswa WHERE rayon = '$rayon' ");
-// $rayon = mysqli_query($conn, "SELECT * FROM users WHERE status = 'rayon' AND rayon = '$rayon'" );  
+
+if ($db_abseneskul) {
+    // Initialize an empty array to store the data
+    $data_siswa = [];
+
+    // Fetch each row and store it in the data_siswa array
+    while ($row = mysqli_fetch_assoc($db_abseneskul)) {
+        $data_siswa[] = $row;
+    }
+
+    // Store the data_siswa array in a session variable
+    $_SESSION['data_siswa'] = $data_siswa;
+    
+
+} else {
+    // Handle the case where the database query fails
+    echo "Error fetching data from the database.";
+}
 
 if(!isset($_SESSION['username'])){
     header('location: index.php');
 }
 if (!isset($_SESSION['tipe']) || empty($_SESSION['tipe'])) {
-    // Redirect ke halaman lain atau lakukan tindakan sesuai kebijakan aplikasi Anda.
-    // Misalnya:
+
     header('location: index.php');
     exit;
 }
@@ -34,7 +50,7 @@ if(isset($_POST['cari'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <title>Absen <?= $rayon?></title>
+    <title>Absen Rayon</title>
     <link rel="stylesheet" href="style/rayon.css">
 </head>
 <body>
@@ -75,7 +91,7 @@ if(isset($_POST['cari'])) {
      
 
     <?php $i =1;?>
-            <?php foreach ($db_abseneskul as $eskull):?>
+            <?php foreach ($_SESSION['data_siswa'] as $eskull):?>
         <tr>
             <td><?= $i ?></td>
             <td><?= $eskull["nama"]?></td>
@@ -84,9 +100,17 @@ if(isset($_POST['cari'])) {
             <td><?= $eskull["eskul"]?></td>
             <td><?= $eskull["eskulproduktif"]?></td>
             <td><?= $eskull["senbud"]?></td>
-            <td><?= $eskull["kehadiranEskulUmum"]?></td>
-            <td><?= $eskull["kehadiranEskulProduktif"]?></td>
-            <td><?= $eskull["kehadiranaSeniBudaya"]?></td>
+            <td><?= $eskull["kehadiranEskulUmum"]?> <br>
+                <a href="rekapUmum.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td><?= $eskull["kehadiranEskulProduktif"]?><br>
+                <a href="rekapProd.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td><?= $eskull["kehadiranaSeniBudaya"]?><br>
+                <a href="rekapSenbud.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td hidden><?= $eskull['id']?></td>
+           
         
             
         </tr>

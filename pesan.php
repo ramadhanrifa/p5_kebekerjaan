@@ -35,8 +35,8 @@ if ($result) {
         $link = 'umum';
     }
 } else {
-    // Handle error jika query gagal
-    $link = 'logout'; // Atau sesuaikan dengan tindakan yang sesuai
+
+    $link = 'logout'; 
 }
 
 
@@ -208,6 +208,7 @@ a:hover {
     </form>
  
     <a href="<?= $link?>.php">Kembali ke halaman sebelumnya</a>
+    <a href="pertanyaan.php">Kirim Pesan anda</a>
 
 
 

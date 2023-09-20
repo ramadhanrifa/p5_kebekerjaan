@@ -2,11 +2,16 @@
 require_once 'config.php';
 $db_abseneskul = mysqli_query($conn, "SELECT * FROM datasiswa");
 
+// $akun = mysqli_query($conn, "SELECT * FROM users where status = pembimbing");
+
+
 session_start();    
 
 if(!isset($_SESSION['username'])){
     header('location: index.php');
 }
+
+
 
 if(isset($_POST['cari'])) {
     $db_abseneskul = search($_POST['keyword']);
@@ -56,17 +61,23 @@ if(isset($_POST['cari'])) {
         <?php $i =1;?>
             <?php foreach ($db_abseneskul as $eskull):?>
         <tr>
-            <td><?= $eskull['id'] ?></td>
+            <td><?= $i ?></td>
             <td><?= $eskull["nama"]?></td>
             <td><?= $eskull["nis"]?></td>
             <td><?= $eskull["rayon"]?></td>
             <td><?= $eskull["eskul"]?></td>
             <td><?= $eskull["eskulproduktif"]?></td>
             <td><?= $eskull["senbud"]?></td>
-            <td><?= $eskull["kehadiranEskulUmum"]?></td>
-            <td><?= $eskull["kehadiranEskulProduktif"]?></td>
-            <td><?= $eskull["kehadiranaSeniBudaya"]?></td>
-            
+            <td><?= $eskull["kehadiranEskulUmum"]?> <br>
+                <a href="rekapUmum.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td><?= $eskull["kehadiranEskulProduktif"]?><br>
+                <a href="rekapProd.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td><?= $eskull["kehadiranaSeniBudaya"]?><br>
+                <a href="rekapSenbud.php?id=<?= $eskull['id']?>"> Lihat lebih lengkap</a>
+            </td>
+            <td hidden><?= $eskull['id']?></td>
         </tr>
        <?php endforeach;?>
     </table>
