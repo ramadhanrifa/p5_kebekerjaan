@@ -21,14 +21,7 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $sql);
 
-    // $buelvia= "SELECT * FROM users WHERE email='elvia@smkwikrama' AND password = 'buelvi'";
-    // $buEl = mysqli_query($conn, $buelvia);
-    // if($buEl->num_rows > 0){
-    //     $row = mysqli_fetch_assoc($result);
-    //     $_SESSION['username'] = $row['username'];
-    //     $_SESSION['rayon'] = $rayon;
-    //     header("Location: wellcome.php");
-    // }
+
     if($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $row['username'];

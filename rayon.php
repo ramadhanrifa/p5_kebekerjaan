@@ -69,11 +69,7 @@ if(isset($_POST['cari'])) {
     <br><br>
     
     <table border ="1">
-        <!-- <form class="d-flex" role="search" action="" method="post">
-      <input class="search" type="search" placeholder="Search" aria-label="Search" name="keyword"
-      autofocus autocomplete="off">
-      <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
-    </form> -->
+       
         <tr>
             <th>NO</th>
             <th>NAMA</th>

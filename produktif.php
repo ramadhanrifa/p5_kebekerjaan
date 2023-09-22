@@ -101,27 +101,27 @@ $tanggal = date("d-m-y");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Absen Eskul produktif</title>
-    <link rel="stylesheet" href="style/data.css">
+    <link rel="stylesheet" href="style/produktif.css">
 </head>
 <body>
-<nav class="navbar bg-body-tertiary" class="atas">
+<nav class="navbar bg-body-tertiary" class="atas" >
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa <?= $tipe?></h1></div>
-  <a href="logout.php">keluar</a>
-  <a href="pesan.php">Buka Pesan</a>
-    <form class="d-flex" role="search" action="" method="post">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
-      autofocus autocomplete="off">
-      <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
-    </form>
     <h2><?= $tanggal?></h2>
   </div>
 </nav>
-    <br><br>
+<form class="d-flex" role="search" action="" method="post">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off" >
+        <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
+      </form>
+      
     <form action="" method="post">
     <table border ="1">
-        
         <tr>
+            <br><br>
+        <a href="logout.php">keluar</a>
+        <a href="pesan.php">Buka Pesan</a>
+        
             <th>NO</th>
             <th>NAMA</th>
             <th>NIS</th>
@@ -148,6 +148,7 @@ $tanggal = date("d-m-y");
             <label for="sakit<?= $eskull['id'] ?>">sakit</label><br>
             <input type="radio" id="izin<?= $eskull['id'] ?>" name="kehadiranEskulProduktif[<?= $eskull['id'] ?>]" value="izin">
             <label for="izin<?= $eskull['id'] ?>">izin</label>
+            <br>
             <input type="radio" id="alpa<?= $eskull['id'] ?>" name="kehadiranEskulProduktif[<?= $eskull['id'] ?>]" value="alpa">
             <label for="alpa<?= $eskull['id'] ?>">alpa</label>
             </td>
@@ -159,7 +160,11 @@ $tanggal = date("d-m-y");
        ?>
        
     </table>
+    
+    
+    
     <input type="submit" name="submit">
+    
     </form>
    
 </body>

@@ -32,16 +32,20 @@ if(isset($_POST['cari'])) {
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa</h1></div>
-  <a href="logout.php">keluar</a>
-  <a href="pertanyaan.php">Beri Pertanyaan?</a>
-    <form class="d-flex" role="search" action=""  method="post">
+  </div>
+</nav>
+<br>
+<form class="d-flex" role="search" action=""  method="post">
       <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
       <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
     </form>
-  </div>
-</nav>
     <br><br>
+    <div class="cari">
+    <a href="logout.php">keluar</a>
+    <a href="pertanyaan.php">Beri Pertanyaan?</a>
+    </div>
+  <br>
     <table border ="1">
         
         <tr>

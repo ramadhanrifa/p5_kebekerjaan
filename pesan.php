@@ -13,6 +13,7 @@ $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] ."'";
 $result = mysqli_query($conn, $sql);
 
 
+
 if(!isset($_SESSION['username'])){
     header('location: index.php');
 }
@@ -206,9 +207,9 @@ a:hover {
         </div>
 
     </form>
- 
-    <a href="<?= $link?>.php">Kembali ke halaman sebelumnya</a>
     <a href="pertanyaan.php">Kirim Pesan anda</a>
+    <br><br>
+    <a href="<?= $link?>.php">Kembali ke halaman sebelumnya</a>
 
 
 
