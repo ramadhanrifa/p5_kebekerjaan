@@ -1,53 +1,81 @@
-html{
+/* Reset some default styles */
+body, html {
     height: 100%;
- }
-
-body{
     margin: 0;
-    padding:0 ;
-    font-family:sans-serif ;
+    padding: 0;
     background: linear-gradient(#096096B4 ,#93BFCF);
-
-   }
-h1{
-    text-transform:uppercase;
-    color:#096096B4;
-}
-a{
-    background-color:#BDCDD6;
-    color:#096096B4;
-    text-decoration:none ;
-    padding:10px;
-    font-size: 12px;
-
-    
 }
 
-table{ 
-    border:1px solid #ddee;
+/* Style for the navigation bar */
+.navbar {
+    background-color: #333;
+    color: black;
+    padding: 10px 0;
+}
+
+.navbar h1 {
+    text-align: center;
+}
+
+/* Style for the search input and button */
+.form-control {
+    width: 300px;
+    margin: 10px;
+}
+
+.btn-outline-success {
+    border-color: #28a745;
+    color: #fff;
+    background-color: #007bff; 
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* Style for the table */
+table {
+    width: 100%;
     border-collapse: collapse;
-    border-spacing:0;
-    width:70%;
-    margin: 10px auto 10px auto;
 }
-table tr th{
-    background-color:#096096B4;
-    border: 1px solid #6096B4;
-    color: #6096B4;
-    padding:10px;
-    text-align:center;
-    
+
+table, th, td {
+    border: 1px solid #333;
+    background-color:#93BFCF;
 }
-table tr td a{
-    background-color: #BDCDD6;
-    color:#EEE9DA;
-    text-decoration:none ;
-    font-size: 15px;
-    
-}
-table tr td {
-    border: 1px solid #6096B4;
-    background-color: #BDCDD6;
+ 
+tr,th{
+    background-color: #096096B4;
     padding: 10px;
-    text-align:center;
+    text-align: center;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+/* Style for odd and even rows */
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+/* Style for "Lihat lebih lengkap" links */
+.cari a {
+        background-color: #5488c1;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+    
+     
+}
+
+a:hover {
+    text-decoration: underline;
 }

@@ -65,11 +65,13 @@ if ($user) {
         $link = 'rayon';
     } elseif($status === 'produktif'){
         $link = 'produktif';
-    }elseif($status== 'senbud'){
+    }elseif($status=== 'senbud'){
         $link = 'senbud';
+    }elseif($status === 'umum'){
+        $link = 'umum';
     }
     else{
-        $link = 'umum';
+        $link = 'pesan';
     }
 } else {
 
@@ -84,79 +86,72 @@ if ($user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pertanyaan</title>
         <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(#096096B4 ,#93BFCF);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+        /* Reset some default styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#096096B4 ,#93BFCF);
+}
 
-        .form-container {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 400px;
-        }
+/* Style for the container */
+.contain {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+/* Style for the form */
+form {
+    text-align: center;
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+h1 {
+    font-size: 24px;
+}
 
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
+/* Style for labels and select */
+label, select {
+    display: block;
+    margin-bottom: 10px;
+}
 
-        textarea {
-            resize: vertical;
-        }
+select {
+    width: 100%;
+    padding: 5px;
+}
 
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-        }
-        a{
-            text-decoration:none ;
-            text-align: right;
-            background:blue;
-            }
-            input[type="submit"] {
-        background-color: #007bff; /* Blue color */
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        font-size: 18px;
-        cursor: pointer;
-        display: block;
-        margin: 0 auto;
-    }
-</style>
+/* Style for textarea */
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+    resize: none;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for the "Kembali" link */
+a {
+    text-decoration: none;
+    color: #007bff;
+    display: block;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style> 
 
 </head>
 
@@ -181,7 +176,7 @@ if ($user) {
         </div>
 
     </form>
-   <a href="wellcome.php">Kembali</a> 
+   <a href="<?= $link?>.php">Kembali</a> 
     </div>
    
 </body>
