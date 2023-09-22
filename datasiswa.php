@@ -4,8 +4,24 @@ $db_abseneskul = mysqli_query($conn, "SELECT * FROM datasiswa");
 
 // $akun = mysqli_query($conn, "SELECT * FROM users where status = pembimbing");
 
-
 session_start();    
+if ($db_abseneskul) {
+    
+    $data_siswa = [];
+
+    
+    while ($row = mysqli_fetch_assoc($db_abseneskul)) {
+        $data_siswa[] = $row;
+    }
+
+    
+    $_SESSION['data_siswa'] = $data_siswa;
+    
+
+} else {
+    // Handle the case where the database query fails
+    echo "Error fetching data from the database.";
+}
 
 if(!isset($_SESSION['username'])){
     header('location: index.php');
@@ -79,6 +95,7 @@ if(isset($_POST['cari'])) {
             </td>
             <td hidden><?= $eskull['id']?></td>
         </tr>
+        <?php $i++?>
        <?php endforeach;?>
     </table>
 </body>
