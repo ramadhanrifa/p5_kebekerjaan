@@ -2,32 +2,9 @@
 require_once 'config.php';
 session_start();
 
-$user = mysqli_query($conn, "SELECT * FROM users ");
+$user = mysqli_query($conn, "SELECT * FROM users");
 
-// $sesi = $_SESSION['username'];
-// $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] ."'";
-// $result = mysqli_query($conn, $sql);
 
-// if ($result) {
-//     $row = mysqli_fetch_assoc($result);
-//     $status = $row['status'];
-
-//     if ($status === 'pembimbing') {
-//         $link = 'datasiswa';
-//     } elseif ($status === 'rayon') {
-//         $link = 'rayon';
-//     } elseif($status === 'produktif'){
-//         $link = 'produktif';
-//     }elseif($status== 'senbud'){
-//         $link = 'senbud';
-//     }
-//     else{
-//         $link = 'umum';
-//     }
-// } else {
-
-//     $link = 'logout'; 
-// }
 
 
 if(!isset($_SESSION['username'])){
@@ -35,6 +12,8 @@ if(!isset($_SESSION['username'])){
 }
 
 $from = $_SESSION['username'];
+
+$dari = mysqli_query($conn, "SELECT * FROM users WHERE username = '$from' ");
 
 if(isset($_POST['submit'])){
     $pesan = $_POST['pesan'];
@@ -55,8 +34,8 @@ if(isset($_POST['submit'])){
 
    
 }
-if ($user) {
-    $row = mysqli_fetch_assoc($user);
+if ($dari) {
+    $row = mysqli_fetch_assoc($dari);
     $status = $row['status'];
 
     if ($status === 'pembimbing') {
@@ -65,7 +44,7 @@ if ($user) {
         $link = 'rayon';
     } elseif($status === 'produktif'){
         $link = 'produktif';
-    }elseif($status=== 'senbud'){
+    }elseif($statu0s === 'senbud'){
         $link = 'senbud';
     }elseif($status === 'umum'){
         $link = 'umum';
@@ -176,7 +155,8 @@ a:hover {
         </div>
 
     </form>
-   <a href="<?= $link?>.php">Kembali</a> 
+   <a href="pesan.php">cek pesan</a> 
+   <a href="<?= $link?>.php">kembali</a>
     </div>
    
 </body>

@@ -1,9 +1,13 @@
 
-kalau kodingannya error berarti cek apakah table nya sudah didownload atau belum kalau tidak coba ubah nama database di 
-config.php
+untuk masuk kedalam akun pembimbing eskul gunakan email = elvi@smkwikrama
+pass = buelvi
 
-ini pesan untuk mau ngerjain frontend (Adly)
-    1. search yang ada di PRODUKTIF, umum, sama senbud dipindahkan ke atas tabel 
-    2. tanggal didiamkan saja (boleh ubah tampilannya)
-    3.tombol input submit  dalam file PRODUKTIF, umum, sama senbud tidak boleh dihilangkan
-    4.rapihin semua file yang menurut anda berantakan
+untuk yang lainnya menggunakan format seperti 
+email = nama@smkwikrama
+pass = pak / bu nama
+
+*catatan kami minta maaf kalau kami membuat email seakan tidak sopan karena menyebut nama bapak atau ibu 
+
+
+pesan untuk adly =
+1. mohon ubah warna dalam tampilan rayon seperti file datasiswa

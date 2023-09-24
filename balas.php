@@ -1,61 +1,36 @@
 <?php
+
 require_once 'config.php';
 session_start();
 
-$user = mysqli_query($conn, "SELECT * FROM users ");
+if (!isset($_SESSION['username'])) {
+    header('location: index.php');
+    exit(); 
+}
 
 $from = $_SESSION['username'];
 
-$pengirim = mysqli_query($conn, "SELECT * FROM pesan WHERE nama = '$from' " );
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-$sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] ."'";
+    $hasil = mysqli_query($conn, "SELECT * FROM pesan WHERE id = $id");
 
-$result = mysqli_query($conn, $sql);
-
-
-
-
-
-
-
-if(!isset($_SESSION['username'])){
-    header('location: index.php');
-}
-
-
-if ($result) {
-    $row = mysqli_fetch_assoc($result);
-    $status = $row['status'];
-
-    if ($status === 'pembimbing') {
-        $link = 'datasiswa';
-    } elseif ($status === 'rayon') {
-        $link = 'rayon';
-    } elseif($status === 'produktif'){
-        $link = 'produktif';
-    }elseif($status== 'senbud'){
-        $link = 'senbud';
+    if ($hasil && mysqli_num_rows($hasil) > 0) {
+        $message = mysqli_fetch_assoc($hasil);
     }
-    else{
-        $link = 'umum';
-    }
-} else {
 
-    $link = 'logout'; 
 }
-
-
 
 if(isset($_POST['submit'])){
     $pesan = $_POST['pesan'];
 
 
         // $d = $dari_values[$dari];
-        $sql = "UPDATE pesan SET balas = '$pesan' WHERE nama = '$from' ";
+        $sql = "UPDATE pesan SET balas = '$pesan' WHERE id = '$id' ";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Pesan anda sudah dikirim')</script>";
-            header('location: wellcome.php');
+            header('location: pesan.php');
         } else {
             echo "Error: " . mysqli_error($conn);
         }
@@ -177,11 +152,10 @@ a:hover {
                     <th>Pesan</th>
                     <th>Dari</th>
                     <th>balasan</th>
-                    <th>Aksi</th>
                 </tr>
                 
                     <?php $i= 1;?>
-                    <?php foreach($pengirim as $m){ 
+                    <?php foreach($hasil as $m){ 
                         
                         ?>
                 <tr>
@@ -190,9 +164,7 @@ a:hover {
                     <td><?= $m['nama'] ?></td>
                     <td><?= $m['pesan'] ?></td>
                     <td><?= $m['dari'] ?></td>
-                    <td><?= $m['balas'] ?></td>
-                    <td><a href="balas.php?id=<?= $m['id']?>">Balas Pesan</a></td>
-                    
+                    <td><?= $m['balas'] ?></td>                     
                 </tr>
                 <?php $i++; ?>
                 <?php }?>
@@ -213,9 +185,9 @@ a:hover {
         </div>
 
     </form>
-    <a href="pertanyaan.php">Kirim Pesan anda</a>
+    <!-- <a href="pertanyaan.php">Kirim Pesan anda</a> -->
     <br><br>
-    <a href="<?= $link?>.php">Kembali ke halaman sebelumnya</a>
+    <a href="pesan.php">Kembali ke halaman sebelumnya</a>
 
 
 

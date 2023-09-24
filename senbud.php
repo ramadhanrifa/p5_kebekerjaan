@@ -27,6 +27,11 @@ if (isset($_POST['submit'])) {
     if ($conn) {
         foreach ($ids as $id) {
             $kehadiran = mysqli_real_escape_string($conn, $kehadiran_values[$id]);
+
+            if(!$kehadiran){
+                echo "<script>alert('kehadiran anda kurang lengkap')</script>";
+                continue;
+            }
             $sqlUpdate = "UPDATE datasiswa SET kehadiranaSeniBudaya = ? WHERE id = ?";
             
             // Persiapkan pernyataan SQL UPDATE

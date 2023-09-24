@@ -27,6 +27,12 @@ if (isset($_POST['submit'])) {
     if ($conn) {
         foreach ($ids as $id) {
             $kehadiran = mysqli_real_escape_string($conn, $kehadiran_values[$id]);
+
+            if(!$kehadiran){
+                echo "<script>alert('kehadiran anda kurang lengkap')</script>";
+                continue;
+            }
+
             $sqlUpdate = "UPDATE datasiswa SET kehadiranEskulUmum = ? WHERE id = ?";
             
             // Persiapkan pernyataan SQL UPDATE
@@ -56,11 +62,7 @@ if (isset($_POST['submit'])) {
             } else {
                 echo "Error: " . mysqli_error($conn);
             }
-            // if(!$kehadiran){
-            //     echo "<script>alert('Silahkan pilih kehadiran')</script>";
-            //     header("location: produktif.php");
-            //     die;
-            // }
+            echo "<script>alert('ada kehadiran yang belum anda isi')</script>";
         }
     } else {
         echo "Tidak dapat terhubung ke database.";
