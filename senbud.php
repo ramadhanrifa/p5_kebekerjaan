@@ -87,21 +87,23 @@ $tanggal = date("d-m-y");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Absen Senbud</title>
-    <link rel="stylesheet" href="style/produktif.css">
+    <link rel="stylesheet" href="style/style2.css">
 </head>
 <body>
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Data Siswa <?= $senbud?></h1></div>
-  <h2><?= $tanggla ?></h2>
+  <h2><?= $tanggal ?></h2>
   </div>
 </nav>
     <form class="d-flex" role="search" action="" method="post">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off" >
         <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
       </form>
+      <br>
+      <a href="logout.php">keluar</a>
     <br><br>
-    <a href="logout.php">keluar</a>
+   
     <form action="" method="post">
     <table border ="1">
         
@@ -110,7 +112,6 @@ $tanggal = date("d-m-y");
             <th>NAMA</th>
             <th>NIS</th>
             <th>RAYON</th>
-            <th>SENI BUDAYA</th>
             <th>KEHADIRAN</th>
             
         </tr>
@@ -123,19 +124,27 @@ $tanggal = date("d-m-y");
             <td><?= $eskull["nama"]?></td>
             <td><?= $eskull["nis"]?></td>
             <td><?= $eskull["rayon"]?></td>
-            <td><?= $eskull["senbud"]?></td>
             <td>
+
             <input type="hidden" name="id[]" value="<?= $eskull['id'] ?>">
+         <div class="horizontal-radio">
             <input type="radio" id="hadir<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="hadir">
             <label for="hadir<?= $eskull['id'] ?>">hadir</label><br>
+         </div>
+         <div class="horizontal-radio">
             <input type="radio" id="sakit<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="sakit">
             <label for="sakit<?= $eskull['id'] ?>">sakit</label><br>
+         </div>
+         <div class="horizontal-radio">
             <input type="radio" id="izin<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="izin">
             <label for="izin<?= $eskull['id'] ?>">izin</label>
             <br>
+        </div>
+        <div class="horizontal-radio">
             <input type="radio" id="alpa<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="alpa">
             <label for="alpa<?= $eskull['id'] ?>">alpa</label>
             </td>
+        </div>
           
             
         </tr>

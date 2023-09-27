@@ -24,7 +24,7 @@ return $rows;
 
 function search($keyword){
     $query = "SELECT * FROM datasiswa WHERE
-    nis LIKE '%k$keyword%' OR
+    nis LIKE '%$keyword%' OR
     nama LIKE '%$keyword%' OR
     rayon LIKE '%$keyword%' OR
     eskul LIKE '%$keyword%' OR

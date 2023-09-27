@@ -84,23 +84,19 @@ if(empty($prod)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Rekap Absen</title>
-    <link rel="stylesheet" href="style/produktif.css">
+    <link rel="stylesheet" href="style/style2.css">
 </head>
 <body>
 <nav class="navbar bg-body-tertiary" class="atas">
   <div class="container-fluid">
   <div class="justify-content-center"><h1> Absen <?= $nama?></h1></div>
-</nav>
-<form class="d-flex" role="search" action="" method="post">
+  <form class="d-flex" role="search" action="" method="post">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
       autofocus autocomplete="off">
       <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
     </form>
-    <br><br>
-    <a href="logout.php">keluar</a>
-  <a href="pesan.php">Pesan</a>
-   
-    
+</nav>
+    <br>
     <table border ="1">
        
             <th>NO</th>
@@ -135,6 +131,8 @@ if(empty($prod)){
 
     </table>
     <a href="<?= $link?>.php">Kembali</a>
+    <a href="pesan.php">Pesan</a>
+    
 </body>
 </html>
 

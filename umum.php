@@ -82,7 +82,7 @@ $tanggal = date("d-m-y");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Absen Eskul Umum</title>
-    <link rel="stylesheet" href="style/produktif.css">
+    <link rel="stylesheet" href="style/style2.css">
 </head>
 <body>
 <nav class="navbar bg-body-tertiary" class="atas">
@@ -96,8 +96,9 @@ $tanggal = date("d-m-y");
       autofocus autocomplete="off">
       <button class="btn btn-outline-success" type="submit" name="cari">cari</button>
     </form>
-    <br><br>
+    <br>
     <a href="logout.php">keluar</a>
+    <br><br>
     <form action="" method="post">
     <table border ="1">
         
@@ -106,7 +107,6 @@ $tanggal = date("d-m-y");
             <th>NAMA</th>
             <th>NIS</th>
             <th>RAYON</th>
-            <th>ESKUL</th>
             <th>KEHADIRAN</th>
             
         </tr>
@@ -119,17 +119,24 @@ $tanggal = date("d-m-y");
             <td><?= $eskull["nama"]?></td>
             <td><?= $eskull["nis"]?></td>
             <td><?= $eskull["rayon"]?></td>
-            <td><?= $eskull["eskul"]?></td>
             <td>
             <input type="hidden" name="id[]" value="<?= $eskull['id'] ?>">
+         <div class="horizontal-radio">
             <input type="radio" id="hadir<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="hadir">
             <label for="hadir<?= $eskull['id'] ?>">hadir</label><br>
+         </div>
+         <div class="horizontal-radio">
             <input type="radio" id="sakit<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="sakit">
             <label for="sakit<?= $eskull['id'] ?>">sakit</label><br>
+        </div>
+        <div class="horizontal-radio">
             <input type="radio" id="izin<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="izin">
             <label for="izin<?= $eskull['id'] ?>">izin</label><br>
+        </div>
+        <div class="horizontal-radio">
             <input type="radio" id="alpa<?= $eskull['id'] ?>" name="kehadiran[<?= $eskull['id'] ?>]" value="alpa">
             <label for="alpa<?= $eskull['id'] ?>">alpa</label>
+         </div>
             </td>
           
             
