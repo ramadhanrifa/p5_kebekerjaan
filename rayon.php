@@ -3,8 +3,8 @@ require_once 'config.php';
 session_start();
 
 
-if (isset($_SESSION['tipe']) ) {
-    $rayon = $_SESSION['tipe']; 
+if (isset($_SESSION['rayon']) ) {
+    $rayon = $_SESSION['rayon']; 
 }
 
 $db_abseneskul = mysqli_query($conn, "SELECT * FROM datasiswa WHERE rayon = '$rayon' ");
@@ -30,7 +30,7 @@ if ($db_abseneskul) {
 if(!isset($_SESSION['username'])){
     header('location: index.php');
 }
-if (!isset($_SESSION['tipe']) || empty($_SESSION['tipe'])) {
+if (!isset($_SESSION['rayon']) || empty($_SESSION['rayon'])) {
 
     header('location: index.php');
     exit;

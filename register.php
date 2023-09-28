@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $status = $_POST['status'];
     $tipe = $_POST['tipe'];
+    $rayon = $_POST['rayon'];
     $password = md5($_POST['password']);
     $cpassword = md5($_POST['cpassword']);
  
@@ -22,8 +23,8 @@ if (isset($_POST['submit'])) {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
         if (!$result->num_rows > 0) {
-            $sql = "INSERT INTO users (username, email, password, status, tipe)
-                    VALUES ('$username', '$email', '$password', '$status', '$tipe' )";
+            $sql = "INSERT INTO users (username, email, password, status, divisi, tipe, rayon)
+                    VALUES ('$username', '$email', '$password', '$status', '$divisi', '$tipe', '$rayon' )";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo "<script>alert('Selamat, registrasi berhasil!')</script>";
@@ -79,11 +80,23 @@ if (isset($_POST['submit'])) {
                     <option value="umum">umum</option>
                     <option value="senbud">senbud</option>
                     <option value="rayon">rayon</option>
+                    <option value="double">double (jika ada 2 option)</option>
                 </select>
             </div>
             <div class="input-group">
-                <input type="text" placeholder="ngajar/ rayon" name="tipe" value="<?= $_POST['tipe']; ?>" required>
+                <label for="">isi jika anda memilih double</label>
+                <select name="divisi" id="" >
+                    <option value="produktif">produktif</option>
+                    <option value="umum">umum</option>
+                    <option value="senbud">senbud</option>
+                    <option value="rayon">rayon</option>
+                </select>
             </div>
+            <div class="input-group">
+                <input type="text" placeholder="ngajar(kosongkan jika perlu)" name="tipe" value="<?= $_POST['tipe']; ?>" required>
+                <input type="text" placeholder="rayon(kosongkan jika perlu)" name="rayon" value="<?= $_POST['tipe']; ?>" required><br>
+            </div>
+            <br><br>
             <div class="input-group">
                 <button name="submit" class="btn">Register</button>
             </div>

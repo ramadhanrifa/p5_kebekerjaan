@@ -45,13 +45,13 @@ if (isset($_POST['submit'])) {
                 $nis = $siswa['nis'];
                 $rayon = $siswa['rayon'];
                 $eskulProduktif = $siswa['eskulproduktif'];
-                $tanggal = date("d-m-y");
+                $Itanggal = date("Y-m-d");
     
                 // Buat pernyataan SQL INSERT INTO ... SELECT
                 $sqlInsert = "INSERT INTO rekapabsensenbud (nama, nis, rayon, senibudaya, absenSenbud, tanggalSB)
                               SELECT ?, ?, ?, ?, ?, ? FROM datasiswa WHERE id = ?";
                 $stmtInsert = mysqli_prepare($conn, $sqlInsert);
-                mysqli_stmt_bind_param($stmtInsert, 'sissssi', $nama, $nis, $rayon, $eskulProduktif, $kehadiran, $tanggal, $id);
+                mysqli_stmt_bind_param($stmtInsert, 'sissssi', $nama, $nis, $rayon, $eskulProduktif, $kehadiran, $Itanggal, $id);
                 
                 if (mysqli_stmt_execute($stmtInsert)) {
                     echo "<script>alert('Kehadiran sudah diupdate dan ditambahkan ke dalam database')</script>";

@@ -3,9 +3,8 @@
 require_once 'config.php';
  
 error_reporting(0);
-$session_expiration = 1800; // 30 menit
+$session_expiration = 1800; 
 
-// Mengatur waktu kedaluwarsa sesi
 session_set_cookie_params($session_expiration);
  
 session_start();
@@ -30,6 +29,12 @@ if (isset($_POST['submit'])) {
             }
             if (isset($row['status'])) {
                 $_SESSION['status'] = $row['status'];
+            }
+            if (isset($row['rayon'])) {
+                $_SESSION['rayon'] = $row['rayon'];
+            }
+            if (isset($row['divisi'])) {
+                $_SESSION['divisi'] = $row['divisi'];
             }
             
             header("Location: wellcome.php");
